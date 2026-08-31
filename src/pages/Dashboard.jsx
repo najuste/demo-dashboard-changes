@@ -69,7 +69,7 @@ export default function Dashboard() {
           alignItems: 'center',
           justifyContent: 'space-between',
           gap: 2,
-          mb: 3,
+          mb: 2.5,
         }}
       >
         <Typography variant="h5" sx={{ fontWeight: 700 }}>

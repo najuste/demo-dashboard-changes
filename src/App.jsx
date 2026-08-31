@@ -19,7 +19,7 @@ export default function App() {
   const [page, setPage] = useState('dashboard')
 
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', bgcolor: 'background.default' }}>
+    <Box sx={{ display: 'flex', height: '100vh', overflow: 'hidden', bgcolor: 'background.default' }}>
       <Sidebar page={page} onNavigate={setPage} />
       <Box component="main" sx={{ flexGrow: 1, p: 4, overflow: 'auto' }}>
         {page === 'dashboard' ? (

@@ -1,19 +1,21 @@
-import { Collapse, ListItemButton, Typography } from '@mui/material'
+import { Box, Collapse, ListItemButton, Typography } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { navy } from '../../theme.js'
 
 // Molecule: a collapsible section header — an uppercase label plus a chevron
-// that rotates as the body opens and closes.
-export default function CollapsibleSection({ label, open, onToggle, px = 2, children }) {
-  return (
+// that rotates as the body opens and closes. Pass `containerSx` to wrap the
+// header and body together on one surface (e.g. the tinted Project group), so
+// the title shares its section's background.
+export default function CollapsibleSection({ label, open, onToggle, px = 2, containerSx, children }) {
+  const content = (
     <>
       <ListItemButton
         onClick={onToggle}
         disableRipple
         sx={{
           px,
-          pt: 1,
-          pb: 1,
+          pt: 0.5,
+          pb: 0.5,
           '&:hover': { bgcolor: 'transparent' },
         }}
       >
@@ -43,4 +45,6 @@ export default function CollapsibleSection({ label, open, onToggle, px = 2, chil
       </Collapse>
     </>
   )
+
+  return containerSx ? <Box sx={containerSx}>{content}</Box> : content
 }

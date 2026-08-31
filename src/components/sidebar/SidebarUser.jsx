@@ -10,6 +10,7 @@ import {
 } from '@mui/material'
 import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined'
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined'
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined'
 import { navy } from '../../theme.js'
 import { avatarSrc } from './EntityAvatar.jsx'
 
@@ -26,7 +27,7 @@ export default function SidebarUser({ name, role, seed }) {
           px: 3,
           py: 1.5,
           gap: 1.25,
-          '&:hover': { bgcolor: navy.hover },
+          '&:hover': { bgcolor: 'rgba(255,255,255,0.04)' },
         }}
       >
         <Avatar src={avatarSrc(seed)} sx={{ width: 34, height: 34 }} />
@@ -44,7 +45,7 @@ export default function SidebarUser({ name, role, seed }) {
         anchorEl={anchor}
         open={Boolean(anchor)}
         onClose={() => setAnchor(null)}
-        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
         transformOrigin={{ vertical: 'bottom', horizontal: 'left' }}
         MenuListProps={{ dense: true }}
         slotProps={{
@@ -63,6 +64,12 @@ export default function SidebarUser({ name, role, seed }) {
           },
         }}
       >
+        <MenuItem onClick={() => setAnchor(null)}>
+          <ListItemIcon>
+            <SettingsOutlinedIcon fontSize="small" />
+          </ListItemIcon>
+          User Settings
+        </MenuItem>
         <MenuItem onClick={() => setAnchor(null)}>
           <ListItemIcon>
             <LanguageOutlinedIcon fontSize="small" />

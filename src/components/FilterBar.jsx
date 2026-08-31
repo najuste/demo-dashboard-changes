@@ -29,7 +29,7 @@ function SplitButton({ icon, options, value, onChange }) {
         variant="outlined"
         size="small"
         ref={anchorRef}
-        sx={{ flexShrink: 0, borderRadius: 1.5 }}
+        sx={{ flexShrink: 0, borderRadius: 1 }}
       >
         <Button
           startIcon={icon}
@@ -79,7 +79,7 @@ function SplitButton({ icon, options, value, onChange }) {
                 bgcolor: 'background.default',
                 border: '1px solid',
                 borderColor: 'divider',
-                borderRadius: 1.5,
+                borderRadius: 1,
               }}
             >
               <ClickAwayListener onClickAway={() => setOpen(false)}>

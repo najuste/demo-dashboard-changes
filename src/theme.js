@@ -31,7 +31,7 @@ const theme = createTheme({
       secondary: '#5b6577',
     },
   },
-  shape: { borderRadius: 10 },
+  shape: { borderRadius: 6 },
   typography: {
     fontFamily:
       'Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif',

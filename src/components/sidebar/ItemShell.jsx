@@ -18,9 +18,11 @@ export default function ItemShell({ active, disabled, dense, onClick, children, 
         my: 0,
         py: dense ? 0.35 : 0.75,
         color: active ? navy.textBright : navy.textDim,
+        // One icon column width for every row (dense or not) so all labels
+        // start at the same x and the icons line up down the sidebar.
         '& .MuiListItemIcon-root': {
           color: 'inherit',
-          minWidth: dense ? 30 : 36,
+          minWidth: 36,
         },
         // The left tick: hidden at rest, darker red once active.
         '&::before': {

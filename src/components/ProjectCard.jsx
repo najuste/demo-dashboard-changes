@@ -2,7 +2,6 @@ import {
   Box,
   Card,
   CardActionArea,
-  CardMedia,
   CardContent,
   Chip,
   Divider,
@@ -14,7 +13,7 @@ import {
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined'
 import MemoryOutlinedIcon from '@mui/icons-material/MemoryOutlined'
 import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined'
-import CircleIcon from '@mui/icons-material/Circle'
+import ImageOutlinedIcon from '@mui/icons-material/ImageOutlined'
 
 export default function ProjectCard({ project }) {
   const running = project.processesRunning ?? 0
@@ -37,24 +36,35 @@ export default function ProjectCard({ project }) {
         flexDirection: 'column',
         height: '100%',
         transition: 'box-shadow 0.15s, border-color 0.15s',
-        '&:hover': { boxShadow: 4, borderColor: 'primary.main' },
+        '&:hover': {
+          boxShadow: '0 2px 8px rgba(15,27,45,0.06)',
+          borderColor: 'text.disabled',
+        },
       }}
     >
       {/* Card body navigates to the viewer (irrelevant for this mockup) */}
       <CardActionArea sx={{ flexGrow: 1 }}>
-        <CardMedia
-          component="img"
-          height="140"
-          src="https://picsum.photos/180/180"
-          alt="project img"
-        />
-        <CardContent>
+        {/* Placeholder thumbnail — a simple icon, since real project images
+            often aren't available. */}
+        <Box
+          sx={{
+            height: 140,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            bgcolor: 'grey.100',
+            color: 'grey.400',
+          }}
+        >
+          <ImageOutlinedIcon sx={{ fontSize: 44 }} />
+        </Box>
+        <CardContent sx={{ p: 1.75, '&:last-child': { pb: 1.75 } }}>
           <Box
             sx={{
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
-              mb: 1,
+              mb: 0.75,
             }}
           >
             <Typography sx={{ fontWeight: 600, fontSize: 15 }}>
@@ -115,20 +125,20 @@ export default function ProjectCard({ project }) {
       <Divider />
 
       {/* Quick navigation actions */}
-      <Box sx={{ display: 'flex', justifyContent: 'flex-end', px: 1, py: 0.5 }}>
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 0.75, px: 1, py: 0.75 }}>
         <Tooltip title="Project info">
-          <IconButton size="small">
-            <InfoOutlinedIcon fontSize="small" />
+          <IconButton>
+            <InfoOutlinedIcon />
           </IconButton>
         </Tooltip>
         <Tooltip title="Processes">
-          <IconButton size="small">
-            <MemoryOutlinedIcon fontSize="small" />
+          <IconButton>
+            <MemoryOutlinedIcon />
           </IconButton>
         </Tooltip>
         <Tooltip title="User permissions">
-          <IconButton size="small">
-            <GroupOutlinedIcon fontSize="small" />
+          <IconButton>
+            <GroupOutlinedIcon />
           </IconButton>
         </Tooltip>
       </Box>

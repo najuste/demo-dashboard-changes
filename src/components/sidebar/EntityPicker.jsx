@@ -22,6 +22,7 @@ export default function EntityPicker({
   menuBg = navy.raised,
 }) {
   const triggerRef = useRef(null)
+  const searchRef = useRef(null)
   const [open, setOpen] = useState(false)
   const [query, setQuery] = useState('')
   // Where the dropdown sits, measured at open time. It aligns to the trigger's
@@ -66,11 +67,12 @@ export default function EntityPicker({
           px: 1.25,
           py: 1,
           borderRadius: 1,
-          // No border at rest; on hover a rounded border fades in, in the same
-          // lighter blue NavItem uses for its hover state.
+          // No border at rest; on hover a rounded border fades in. A translucent
+          // white keeps the line looking identical whether the picker sits on the
+          // bare sidebar (client) or the tinted project group.
           border: '1px solid transparent',
           transition: 'border-color 0.15s',
-          '&:hover': { borderColor: navy.raised },
+          '&:hover': { borderColor: 'rgba(255,255,255,0.15)' },
         }}
       >
         <EntityAvatar seed={selected?.id ?? 'placeholder'} width={46} height={30} radius={'1px'} />
@@ -89,7 +91,9 @@ export default function EntityPicker({
         >
           {selected ? selected.name : placeholder}
         </Typography>
-        <ExpandMoreIcon sx={{ color: navy.textDim }} />
+        {/* Dropdown caret: lighter and smaller than the collapsible-section
+            chevrons, so a "select" reads differently from a "collapse". */}
+        <ExpandMoreIcon sx={{ fontSize: 16, color: navy.textDim, opacity: 0.5 }} />
       </ButtonBase>
 
       <Popover
@@ -101,6 +105,10 @@ export default function EntityPicker({
         anchorReference="anchorPosition"
         anchorPosition={menuRect ? { top: menuRect.top, left: menuRect.left } : undefined}
         transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+        // Move the caret into the search field once the menu has opened, so you
+        // can type straight away. autoFocus alone loses to the Popover focusing
+        // its own Paper on enter.
+        TransitionProps={{ onEntered: () => searchRef.current?.focus() }}
         slotProps={{
           paper: {
             sx: {
@@ -127,6 +135,7 @@ export default function EntityPicker({
           <SearchOutlinedIcon sx={{ fontSize: 18, color: navy.textDim }} />
           <InputBase
             autoFocus
+            inputRef={searchRef}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={searchPlaceholder}
