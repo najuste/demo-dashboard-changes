@@ -47,6 +47,9 @@ export default function SidebarUser({ name, role, seed }) {
         onClose={() => setAnchor(null)}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
         transformOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+        // Let the flyout sit flush with the viewport's bottom edge instead of
+        // MUI's default 16px inset.
+        marginThreshold={0}
         MenuListProps={{ dense: true }}
         slotProps={{
           paper: {
@@ -54,6 +57,9 @@ export default function SidebarUser({ name, role, seed }) {
               bgcolor: navy.raised,
               color: navy.textBright,
               border: '1px solid rgba(255,255,255,0.08)',
+              // Flat against the sidebar: no rounding on the left edge.
+              borderTopLeftRadius: 0,
+              borderBottomLeftRadius: 0,
               minWidth: 180,
               '& .MuiMenuItem-root': {
                 fontSize: 13,
